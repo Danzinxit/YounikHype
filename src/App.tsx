@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { Truck, Medal, Ruler, Leaf, Clock, Lock, Award, ChevronDown, ChevronUp, Star, ShoppingCart, Package, Shirt } from 'lucide-react';
+import { Truck, Leaf, Clock, Lock, Award, ChevronDown, ChevronUp, Star, ShoppingCart, Package, Shirt } from 'lucide-react';
 import azulImage from './images/azul.png';
 import blackImage from './images/black.png';
-import amareloImage from './images/amarelo.png';
+import amareloImage from './images/amarelo.png'; 
 import AOS from 'aos';
+import { useNavigate } from 'react-router-dom';
 import 'aos/dist/aos.css';
 
 function App() {
@@ -16,11 +17,11 @@ function App() {
 
   const [openFaq, setOpenFaq] = React.useState<number | null>(null);
   const [selectedColor, setSelectedColor] = React.useState<'black' | 'navy' | 'olive'>('black');
+  
+  const navigate = useNavigate();
 
   const handleBuyNow = () => {
-    alert("Produto adicionado ao carrinho! Redirecionando para o checkout...");
-    // Aqui você pode redirecionar para uma página de checkout, por exemplo:
-    // window.location.href = '/checkout';
+    navigate('/formulario'); // Use o hook useNavigate para redirecionar
   };
 
   const features = [
@@ -129,7 +130,7 @@ function App() {
         className="relative bg-black py-16 sm:py-24"
         data-aos="fade-up"
       >
-        {/* Ajuste no z-index e pointer-events para evitar bloqueio de interação */}
+
         <div 
        
           data-aos="fade-in"
@@ -208,7 +209,7 @@ function App() {
                 </div>
               </div>
               <button 
-                onClick={handleBuyNow} // Adiciona o evento de clique
+                onClick={handleBuyNow}
                 className="flex items-center justify-center gap-2 w-full sm:w-auto bg-[#14AB43] text-white px-8 py-4 rounded-full font-bold hover:bg-[#128C37] transition shadow-lg shadow-[#14AB43]/30"
               > <ShoppingCart className="w-5 h-5" />
                 COMPRAR AGORA
@@ -391,6 +392,7 @@ function App() {
           <button 
             className="flex items-center justify-center gap-2 mx-auto bg-[#14AB43] text-white px-8 py-4 rounded-full font-bold hover:bg-[#128C37] transition shadow-lg shadow-[#14AB43]/30"
             data-aos="zoom-in"
+            onClick={handleBuyNow}
           >
             <ShoppingCart className="w-5 h-5" />
             COMPRAR AGORA
@@ -437,7 +439,7 @@ function App() {
       </footer>
     </div>
   </div>);
+  
 }
-
 
 export default App;
